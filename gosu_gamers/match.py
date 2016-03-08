@@ -38,7 +38,8 @@ class Match(Storage):
         tree = html.fromstring(request.content)
         streams = tree.xpath("//object[contains(@id, 'live_embed_player_flash')]/@data")
         if not streams:
-            streams = tree.xpath("//div[@id='tab-content-streams']//iframe/@src")
+            streams = tree.xpath("//*[@class='matches-streams']//iframe/@src")
+            print(streams)
         return streams
 
     def __dict__(self, get_streams=False):
